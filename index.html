@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#FF5C29"/><text x="100" y="115" font-size="64" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif">PM</text></svg></template>
+<helmet>
+<meta name="ext-resource-dependency" content="assets/workshop-painting.png">
+<meta name="ext-resource-dependency" content="assets/workshop-pottery.png">
+<meta name="ext-resource-dependency" content="assets/workshop-sketching.png">
+<meta name="ext-resource-dependency" content="assets/workshop-mixed-media.png">
+<meta name="ext-resource-dependency" content="assets/who-beginners.png">
+<meta name="ext-resource-dependency" content="assets/who-families.png">
+<meta name="ext-resource-dependency" content="assets/who-teams.png">
+<meta name="ext-resource-dependency" content="assets/cta-1.png">
+<meta name="ext-resource-dependency" content="assets/cta-2.png">
+<meta name="ext-resource-dependency" content="assets/cta-3.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body { margin: 0; background: #FFF4E9; cursor: none; overflow-anchor: none; }
+  a, button { cursor: none; }
+  html { overflow-x: hidden; }
+  a { color: #FF3B00; text-decoration: none; }
+  a:hover { color: #D93000; }
+  @media (max-width: 680px) {
+    .nav-links { position: fixed !important; top: 76px; right: 16px; height: auto; width: auto; max-width: none; background: #FFF4E9; border-radius: 20px; flex-direction: column !important; align-items: flex-end; justify-content: flex-start; gap: 12px; padding: 20px; box-sizing: border-box; z-index: 9600; box-shadow: 0 16px 44px rgba(26,19,16,0.28); transform: scale(0.25); opacity: 0; pointer-events: none; transform-origin: top right; transition: transform .4s cubic-bezier(0.34,1.56,0.64,1), opacity .3s ease; }
+    .nav-links-open { transform: translateY(0) scale(1) !important; opacity: 1 !important; pointer-events: auto !important; }
+    .ff-hamburger { display: flex !important; }
+    .ff-nav-cta { display: none !important; }
+  }
+  .nav-links-open a { width: auto !important; box-sizing: border-box; padding: 14px 24px !important; font-size: 18px !important; white-space: nowrap !important; }
+  .ff-menu-scrim { position: fixed; inset: 0; background: rgba(255,255,255,0.6); backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); opacity: 0; pointer-events: none; z-index: 9550; transition: opacity .4s ease, backdrop-filter .4s ease, -webkit-backdrop-filter .4s ease; }
+  .ff-menu-scrim-open { opacity: 1; pointer-events: auto; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+  @media (hover: none), (pointer: coarse) { body, a, button { cursor: auto !important; } .ff-cursor-dot { display: none !important; } }
+  .ff-workshop-label { transition: opacity .6s cubic-bezier(0.34,1.56,0.64,1), transform .6s cubic-bezier(0.34,1.56,0.64,1); }
+  @media (max-width: 780px) {
+    .ff-nav { padding: 14px 18px !important; }
+    .ff-nav-cta-text { padding: 10px 16px !important; font-size: 13px !important; }
+    .ff-hero-section { padding: 32px 20px 0 !important; }
+    .ff-hero-row { flex-direction: column !important; gap: 20px !important; }
+    .ff-hero-row h1 { flex: 0 0 auto !important; }
+    .ff-hero-copy { max-width: none !important; }
+    .ff-hero-frame { margin-top: 8px !important; height: 60vh !important; }
+    .ff-section { padding-left: 20px !important; padding-right: 20px !important; }
+    .ff-how-section { padding-top: 80px !important; padding-bottom: 88px !important; }
+    .ff-how-grid { grid-template-columns: 1fr !important; height: auto !important; gap: 16px !important; }
+    .ff-how-card { height: auto !important; max-height: none !important; overflow: visible !important; }
+    .ff-how-image { order: -1 !important; height: 240px !important; }
+    .ff-season-section { padding-top: 40px !important; padding-bottom: 88px !important; }
+    .ff-season-pin { position: relative; }
+    .ff-season-row { display: flex !important; flex-wrap: nowrap !important; overflow: visible !important; position: sticky !important; top: 76px; align-items: stretch !important; justify-content: flex-start !important; gap: 14px !important; max-width: none !important; will-change: transform; }
+    .ff-season-item { flex: 0 0 72% !important; width: 72% !important; margin-bottom: 0 !important; opacity: 1 !important; transform: none !important; transition: none !important; }
+    .ff-stats-section { padding-top: 72px !important; padding-bottom: 72px !important; }
+    .ff-stats-head { flex-direction: column !important; gap: 16px !important; }
+    .ff-stats-grid { grid-template-columns: 1fr !important; }
+    .ff-more-section { padding-top: 64px !important; padding-bottom: 88px !important; }
+    .ff-more-frame { height: 420px !important; }
+    .ff-more-head { left: 20px !important; top: 24px !important; max-width: none !important; right: 20px !important; }
+    .ff-more-pills { left: 20px !important; right: 20px !important; bottom: 20px !important; }
+    .ff-gallery-section { padding-top: 40px !important; padding-bottom: 88px !important; }
+    .ff-faq-section { padding-top: 72px !important; padding-bottom: 88px !important; }
+    .ff-faq-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+    .ff-faq-sticky { position: static !important; top: auto !important; }
+    .ff-faq-item { padding: 24px 22px !important; }
+    .ff-faq-item span[style*="font-size: 22px"] { font-size: 18px !important; }
+    .ff-stats-grid > div { padding: 32px 24px 24px !important; }
+    .ff-season-item span { padding: 0 8px !important; box-sizing: border-box; }
+    .ff-workshop-label { opacity: 0; transform: translateY(30px) scale(0.7); }
+    .ff-workshop-label-in { opacity: 1 !important; transform: translateY(0) scale(1) !important; }
+    .ff-cta-section { padding-top: 88px !important; padding-bottom: 88px !important; }
+    .ff-cta-grid { grid-template-columns: 1fr !important; }
+    .ff-footer { padding: 40px 20px 24px !important; }
+    .ff-footer-links { align-items: flex-start !important; width: 100% !important; }
+  }
+  @media (max-width: 480px) {
+    .ff-who-grid { grid-template-columns: 1fr !important; }
+    .ff-season-item { flex: 0 0 82% !important; width: 82% !important; }
+  }
+  @keyframes fkSlideUp { from { opacity: 0; transform: translateY(110%); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fkBounce { 0%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-20px); } }
+  @keyframes fkFadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fkFadeLeft { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: translateX(0); } }
+  @keyframes fkPop { 0% { transform: scale(0); opacity: 0.35; } 60% { opacity: 0.2; } 100% { transform: scale(2.2); opacity: 0; } }
+  @keyframes fkMarquee { from { transform: translateX(0%); } to { transform: translateX(-50%); } }
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="{{ loaderStyle }}">
+    <div style="width: 28px; height: 28px; background: #FF3B00; border-radius: 0px 12px 0px 12px; animation: fkBounce 1s ease-in-out infinite;"></div>
+    <div style="width: 28px; height: 28px; background: #FF3B00; border-radius: 0px 12px 0px 12px; animation: fkBounce 1s ease-in-out infinite; animation-delay: .15s;"></div>
+    <div style="width: 28px; height: 28px; background: #FF3B00; border-radius: 0px 12px 0px 12px; animation: fkBounce 1s ease-in-out infinite; animation-delay: .3s;"></div>
+  </div>
+
+  <div class="ff-cursor-dot" ref="{{ cursorRef }}" style="position: fixed; top: 0; left: 0; width: 16px; height: 16px; margin: -8px 0 0 -8px; background: #FF3B00; border-radius: 50%; pointer-events: none; z-index: 10000; transform: translate3d(-100px, -100px, 0);"></div>
+
+  <div ref="{{ pageWrapRef }}" style="font-family: Helvetica, Arial, sans-serif; color: #1A1310; max-width: 1400px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column;">
+
+  <nav class="ff-nav" style="padding: 20px 48px; position: sticky; top: 0; z-index: 9560; width: 100vw; max-width: 100vw; margin-left: calc(50% - 50vw); box-sizing: border-box; {{ navStyle }}">
+  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: nowrap; gap: 12px; width: 100%; max-width: 1300px; margin: 0 auto; box-sizing: border-box;">
+    <div style="font-family: Helvetica, Arial, sans-serif; font-weight: 900; font-size: 18px; letter-spacing: 0.02em; color: #FF3B00; flex: 0 0 auto;">PAPER MOON STUDIO</div>
+    <div class="{{ navLinksClass }}" style="display: flex; gap: 8px; flex-wrap: nowrap; min-width: 0;">
+      <a href="#top" onClick="{{ closeMobileMenu }}" style="background: #F3D9C0; padding: 10px 16px; border-radius: 12px 12px 12px 0px; font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: #1A1310; transform-origin: bottom left; transition: background .2s ease, color .2s ease, transform .2s ease;" style-hover="background: #FF5C29; color: #fff; transform: rotate(-4deg);">ABOUT</a>
+      <a href="#how-it-works" onClick="{{ closeMobileMenu }}" style="background: #F3D9C0; padding: 10px 16px; border-radius: 12px 12px 12px 0px; font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: #1A1310; transform-origin: bottom left; transition: background .2s ease, color .2s ease, transform .2s ease;" style-hover="background: #FF5C29; color: #fff; transform: rotate(-4deg);">HOW IT WORKS</a>
+      <a href="#workshops" onClick="{{ closeMobileMenu }}" style="background: #F3D9C0; padding: 10px 16px; border-radius: 12px 12px 12px 0px; font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: #1A1310; transform-origin: bottom left; transition: background .2s ease, color .2s ease, transform .2s ease;" style-hover="background: #FF5C29; color: #fff; transform: rotate(-4deg);">WORKSHOPS</a>
+      <a href="#gallery" onClick="{{ closeMobileMenu }}" style="background: #F3D9C0; padding: 10px 16px; border-radius: 12px 12px 12px 0px; font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: #1A1310; transform-origin: bottom left; transition: background .2s ease, color .2s ease, transform .2s ease;" style-hover="background: #FF5C29; color: #fff; transform: rotate(-4deg);">GALLERY</a>
+    </div>
+    <button onClick="{{ toggleMobileMenu }}" class="ff-hamburger" style="display: none; flex-direction: column; align-items: center; justify-content: center; gap: 5px; width: 40px; height: 40px; flex: 0 0 auto; background: #F3D9C0; border: none; border-radius: 8px; padding: 0; position: relative; z-index: 9700;">
+      <span style="{{ hamburgerLine1Style }}"></span>
+      <span style="{{ hamburgerLine2Style }}"></span>
+      <span style="{{ hamburgerLine3Style }}"></span>
+    </button>
+    <a href="#" onMouseEnter="{{ onNavEnter }}" onMouseLeave="{{ onNavLeave }}" class="ff-nav-cta" style="display: flex; align-items: center; gap: 0; flex: 0 0 auto;">
+      <span class="ff-nav-cta-text" style="background: #FF5C29; color: #fff; padding: 12px 22px; border-radius: 8px 8px 8px 0px; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; transition: background .2s ease; white-space: nowrap;" style-hover="background: #FF7A4D;">BOOK A CLASS</span>
+      <span style="background: #FF5C29; color: #fff; width: 40px; height: 40px; border-radius: 8px 0px 8px 8px; position: relative; overflow: hidden; transition: background .2s ease;" style-hover="background: #FF7A4D;">
+        <span style="{{ navChevronStyle }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h13M15 6l6 6-6 6" stroke-linejoin="round"></path></svg></span>
+        <span style="{{ navArrowStyle }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h16M13 5l7 7-7 7"></path></svg></span>
+      </span>
+    </a>
+  </div>
+  </nav>
+  <div class="{{ navScrimClass }}" onClick="{{ closeMobileMenu }}"></div>
+
+  <section id="top" class="ff-hero-section" style="padding: 64px 48px 0; flex: 1 1 auto; display: flex; flex-direction: column; min-height: 0; width: 100vw; max-width: 100vw; margin-left: calc(50% - 50vw); box-sizing: border-box;">
+    <div ref="{{ heroTextRef }}" class="ff-hero-row" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; flex-wrap: wrap; flex: 0 0 auto; width: 100%; max-width: 1300px; margin: 0 auto; box-sizing: border-box;">
+      <h1 style="font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: clamp(36px, 5.5vw, 76px); line-height: 0.98; letter-spacing: -0.01em; margin: 0; flex: 1 1 480px; min-width: 0;">{{ heroHeading }}</h1>
+      <div class="ff-hero-copy" style="max-width: 340px;">
+        <p style="font-size: 14px; line-height: 1.55; margin: 0 0 24px;">Paint, sculpt, sketch, and create in a studio built for makers of every skill level. Walk in, pick a medium, and leave with something you made yourself.</p>
+        <a href="#" onMouseEnter="{{ onHeroEnter }}" onMouseLeave="{{ onHeroLeave }}" style="display: inline-flex; align-items: center; gap: 0;">
+          <span style="{{ heroTextStyle }}">BOOK A CLASS</span>
+          <span style="background: #FF5C29; color: #fff; width: 44px; height: 44px; border-radius: 8px 0px 8px 8px; position: relative; overflow: hidden; transition: background .2s ease;" style-hover="background: #FF7A4D;">
+            <span style="{{ heroChevronStyle }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h13M15 6l6 6-6 6" stroke-linejoin="round"></path></svg></span>
+            <span style="{{ heroArrowStyle }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h16M13 5l7 7-7 7"></path></svg></span>
+          </span>
+        </a>
+      </div>
+    </div>
+    <div ref="{{ frameRef }}" class="ff-hero-frame" style="margin-top: 24px; border-radius: 0px 28px 0px 40px; overflow: hidden; position: relative; flex: 0 0 auto; width: 100%; max-width: 1300px; margin-left: auto; margin-right: auto; box-sizing: border-box;">
+      <div ref="{{ imgWrapRef }}" style="position: absolute; left: 0; top: -50%; width: 100%; height: 200%;">
+        <image-slot id="hero-studio" shape="rect" src="assets/hero.png" placeholder="Drop a photo of the studio"></image-slot>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works" ref="{{ secondSectionRef }}" class="ff-section ff-how-section" style="padding: 180px 48px 160px; width: 100vw; max-width: 100vw; margin-left: calc(50% - 50vw); box-sizing: border-box;">
+    <div style="{{ secondSectionStyle }}">
+    <div style="text-align: center; margin-bottom: 56px;">
+      <span style="color: #FF3B00; font-weight: 500; font-size: 14px; letter-spacing: 0.03em; line-height: 1.1">HOW IT WORKS</span>
+      <h2 ref="{{ stepsHeadingRef }}" style="font-family: Helvetica, Arial, sans-serif; font-weight: 500; font-size: clamp(36px, 5vw, 64px); line-height: 0.95; margin: 6px 0 0">{{ stepsHeading }}</h2>
+    </div>
+    <div class="ff-how-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; height: 460px;" onMouseEnter="{{ onImagesEnter }}" onMouseLeave="{{ onImagesLeave }}">
+      <div ref="{{ stepsCardRef }}" class="ff-how-card" style="background: #FFE4D7; border-radius: 0px 32px 32px 32px; padding: 32px 36px; height: 100%; overflow-y: auto; box-sizing: border-box; opacity: 0; transform: translateX(-60px);">
+        <sc-for list="{{ steps }}" as="step" hint-placeholder-count="3">
+          <div style="{{ step.rowStyle }}" onClick="{{ step.onToggle }}">
+            <div style="display: flex; align-items: baseline; gap: 16px;">
+              <span style="color: #FF3B00; font-size: 18px; font-weight: 500;">({{ step.num }})</span>
+              <span style="font-size: 26px; font-weight: 500; letter-spacing: -0.01em; line-height: 0.95;">{{ step.title }}</span>
+            </div>
+            <div style="{{ step.descStyle }}">
+              <div ref="{{ step.descInnerRef }}" style="overflow: hidden; min-height: 0;">
+                <p style="font-size: 15px; line-height: 1.6; color: #4A3F38; margin: 14px 0 0; max-width: 480px;">{{ step.descNode }}</p>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div ref="{{ howFrameRef }}" class="ff-how-image" style="border-radius: 0px 32px 32px 32px; overflow: hidden; height: 100%; width: 100%; min-width: 0; position: relative; {{ howImageVisStyle }}">
+        <div ref="{{ howImgWrapRef }}" style="position: absolute; left: 0; top: -25%; width: 100%; height: 150%;">
+          <image-slot id="how-it-works-photo" shape="rect" src="assets/how-it-works-pottery.png" placeholder="Drop a photo of someone at the wheel"></image-slot>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <section id="workshops" class="ff-section ff-season-section" style="padding: 40px 48px 180px; width: 100vw; max-width: 100vw; margin-left: calc(50% - 50vw); box-sizing: border-box;">
+    <div ref="{{ seasonHeadRef }}" style="text-align: center; margin-bottom: 64px;">
+      <span style="{{ seasonEyebrowStyle }}">WORKSHOPS</span>
+      <h2 style="font-family: Helvetica, Arial, sans-serif; font-weight: 500; font-size: clamp(36px, 5vw, 64px); line-height: 0.95; margin: 6px 0 0;">{{ seasonHeading }}</h2>
+    </div>
+    <div ref="{{ seasonPinRef }}" class="ff-season-pin">
+    <div ref="{{ seasonRowRef }}" class="ff-season-row" style="display: flex; align-items: flex-end; justify-content: center; gap: 8px; max-width: 1300px; margin: 0 auto;">
+      <sc-for list="{{ seasonItems }}" as="item" hint-placeholder-count="4">
+        <div ref="{{ item.clipRef }}" class="ff-season-item" style="position: relative; flex: 1 1 0; aspect-ratio: 4 / 5; margin-bottom: {{ item.lift }}px; border-radius: 20px 0px 20px 20px; overflow: hidden; opacity: 0; transform: scale(0.15); transform-origin: bottom left;">
+          <div ref="{{ item.wrapRef }}" style="position: absolute; left: 0; top: -18%; width: 100%; height: 136%;">
+            <image-slot id="{{ item.id }}" shape="rect" src="{{ item.src }}" placeholder="Drop a workshop photo"></image-slot>
+          </div>
+          <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.25); pointer-events: none;"></div>
+          <span class="{{ item.labelClass }}" style="position: absolute; left: 0; right: 0; top: 50%; margin-top: -14px; text-align: center; color: #fff; font-weight: 400; font-size: 19px; letter-spacing: 0.02em; text-transform: uppercase;">{{ item.name }}</span>
+        </div>
+      </sc-for>
+    </div>
+    </div>
+  </section>
+
+  <section ref="{{ statsSectionRef }}" class="ff-section ff-stats-section" style="padding: 48px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; width: 100vw; max-width: 100vw; margin-left: calc(50% - 50vw); box-sizing: border-box;">
+    <div ref="{{ statsHeadingRef }}" class="ff-stats-head" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; flex-wrap: wrap; width: 100%; max-width: 1300px; margin: 0 auto 56px; box-sizing: border-box;">
+      <h2 style="font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: clamp(36px, 5.5vw, 68px); line-height: 1.15; letter-spacing: -0.01em; margin: 0;">{{ statsHeading }}</h2>
+      <p style="{{ statsParaStyle }}">From a first-timer's opening sketch to a returning potter's tenth piece, every session adds to what we've built together</p>
+    </div>
+    <div class="ff-stats-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; width: 100%; max-width: 1300px; margin: 0 auto; box-sizing: border-box;">
+      <sc-for list="{{ statItems }}" as="stat" hint-placeholder-count="3">
+        <div ref="{{ stat.cardRef }}" style="background: #fff; border-radius: {{ stat.radius }}; padding: 40px 32px 28px; transform-origin: top right; opacity: {{ stat.opacity }}; transform: {{ stat.transform }}; transition: opacity 0.5s ease {{ stat.delay }}s, transform 0.7s cubic-bezier(0.34,1.56,0.64,1) {{ stat.delay }}s;">
+          <div style="font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: clamp(48px, 6vw, 84px); line-height: 1; color: #1A1310;">{{ stat.display }}<span style="color: #FF3B00;">+</span></div>
+          <div style="margin-top: 20px; font-size: 13px; font-weight: normal; letter-spacing: 0.02em; text-transform: uppercase; color: #1A1310;">{{ stat.label }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section class="ff-section ff-more-section" style="padding: 100px 48px 180px; width: 100vw; max-width: 100vw; margin-left: calc(50% - 50vw); box-sizing: border-box;">
+    <div ref="{{ moreFrameRef }}" class="ff-more-frame" style="position: relative; border-radius: 0px 40px 0px 40px; overflow: hidden; height: 620px; max-width: 1300px; margin: 0 auto;">
+      <div ref="{{ moreImgWrapRef }}" style="position: absolute; left: 0; top: -30%; width: 100%; height: 165%;">
+        <image-slot id="more-than-a-class" shape="rect" src="assets/more-than-class.png" placeholder="Drop a lifestyle photo"></image-slot>
+      </div>
+      <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0.55) 100%); pointer-events: none;"></div>
+      <div ref="{{ moreHeadRef }}" class="ff-more-head" style="position: absolute; left: 44px; top: 44px; max-width: 560px;">
+        <h2 style="font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: clamp(40px, 5.5vw, 72px); line-height: 1.05; letter-spacing: -0.01em; margin: 0; color: #fff;">{{ moreHeading }}</h2>
+        <p style="{{ morePStyle }}">An art studio session is a chance to slow down, unplug, and reconnect with your creative side</p>
+      </div>
+      <div class="ff-more-pills" style="position: absolute; left: 44px; right: 44px; bottom: 36px; display: flex; gap: 8px; flex-wrap: wrap; {{ morePillsWrapStyle }}">
+        <sc-for list="{{ morePills }}" as="pill" hint-placeholder-count="3">
+          <span style="{{ pill.style }}">{{ pill.text }}</span>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="ff-section ff-gallery-section" style="padding: 40px 48px 180px; width: 100vw; max-width: 100vw; margin-left: calc(50% - 50vw); box-sizing: border-box;">
+    <div ref="{{ whoHeadRef }}" style="text-align: center; margin-bottom: 56px;">
+      <span style="{{ whoEyebrowStyle }}">WHO IT'S FOR</span>
+      <h2 style="font-family: Helvetica, Arial, sans-serif; font-weight: 500; font-size: clamp(36px, 5vw, 64px); line-height: 0.95; margin: 6px 0 0;">{{ whoHeading }}</h2>
+    </div>
+    <div class="ff-who-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 1300px; margin: 0 auto;">
+      <sc-for list="{{ whoItems }}" as="item" hint-placeholder-count="4">
+        <div ref="{{ item.clipRef }}" style="position: relative; aspect-ratio: 3 / 2; border-radius: {{ item.radius }}; overflow: hidden; opacity: 0; transform: scale(0.4); transform-origin: {{ item.origin }};">
+          <div ref="{{ item.wrapRef }}" style="position: absolute; left: 0; top: -20%; width: 100%; height: 140%;">
+            <image-slot id="{{ item.id }}" shape="rect" src="{{ item.src }}" placeholder="Drop a lifestyle photo"></image-slot>
+          </div>
+          <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.25); pointer-events: none;"></div>
+          <span style="position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); text-align: center; color: #fff; font-weight: 400; font-size: clamp(28px, 3.5vw, 44px); letter-spacing: 0.01em; text-transform: uppercase;">{{ item.name }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section class="ff-section ff-faq-section" style="background: #FBDCC4; padding: 140px 48px 160px; width: 100vw; max-width: 100vw; margin-left: calc(50% - 50vw); box-sizing: border-box;">
+    <div class="ff-faq-grid" style="display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; max-width: 1300px; margin: 0 auto;">
+      <div class="ff-faq-sticky" style="position: sticky; top: 120px; align-self: start;">
+        <h2 ref="{{ faqHeadingRef }}" style="{{ faqHeadingStyle }}">FREQUENTLY<br>ASKED<br>QUESTIONS</h2>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <sc-for list="{{ faqItems }}" as="faq" hint-placeholder-count="4">
+          <div class="ff-faq-item" style="background: #fff; border-radius: 28px; padding: 32px 36px; cursor: pointer;" onClick="{{ faq.onToggle }}">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 24px;">
+              <span style="font-size: 22px; font-weight: 500; letter-spacing: -0.01em;">{{ faq.question }}</span>
+              <span style="{{ faq.iconWrapStyle }}">
+                <span key="{{ faq.pulseKey }}" style="{{ faq.pulseStyle }}"></span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF3B00" stroke-width="3" stroke-linecap="round" style="{{ faq.iconStyle }}"><line x1="5" y1="12" x2="19" y2="12"></line><line x1="12" y1="5" x2="12" y2="19"></line></svg>
+              </span>
+            </div>
+            <div style="{{ faq.answerStyle }}">
+              <div style="overflow: hidden; min-height: 0;">
+                <p style="font-size: 15px; line-height: 1.6; color: #4A3F38; margin: 14px 0 0; max-width: 640px;">{{ faq.answer }}</p>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section class="ff-section ff-cta-section" style="padding: 160px 48px 160px; width: 100vw; max-width: 100vw; margin-left: calc(50% - 50vw); box-sizing: border-box; text-align: center;">
+    <div ref="{{ ctaHeadRef }}">
+      <h2 style="font-family: Helvetica, Arial, sans-serif; font-weight: 500; font-size: clamp(36px, 5.5vw, 68px); line-height: 0.95; letter-spacing: -0.01em; margin: 0 auto; max-width: 900px;">{{ ctaHeading }}</h2>
+    </div>
+    <div style="{{ ctaBodyStyle }}">
+      <p style="font-size: 16px; line-height: 1.55; margin: 20px auto 28px; max-width: 480px; color: #1A1310;">Spend a few hours creating, try a new medium, and take home something made entirely by you.</p>
+      <div style="{{ ctaButtonWrapStyle }}">
+      <a href="#" onMouseEnter="{{ onCtaEnter }}" onMouseLeave="{{ onCtaLeave }}" style="display: inline-flex; align-items: center; gap: 0;">
+        <span style="{{ ctaTextStyle }}">BOOK A CLASS</span>
+        <span style="background: #FF5C29; color: #fff; width: 44px; height: 44px; border-radius: 8px 0px 8px 8px; position: relative; overflow: hidden; transition: background .2s ease;" style-hover="background: #FF7A4D;">
+          <span style="{{ ctaChevronStyle }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h13M15 6l6 6-6 6" stroke-linejoin="round"></path></svg></span>
+          <span style="{{ ctaArrowStyle }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h16M13 5l7 7-7 7"></path></svg></span>
+        </span>
+      </a>
+      </div>
+    </div>
+    <div class="ff-cta-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; max-width: 1300px; margin: 56px auto 0;">
+      <sc-for list="{{ ctaImages }}" as="img" hint-placeholder-count="3">
+        <div ref="{{ img.clipRef }}" style="position: relative; aspect-ratio: 4 / 5; border-radius: {{ img.radius }}; overflow: hidden; opacity: 0; transform: translateY(40px);">
+          <div ref="{{ img.wrapRef }}" style="position: absolute; left: 0; top: -18%; width: 100%; height: 136%;">
+            <image-slot id="{{ img.id }}" shape="rect" src="{{ img.src }}" placeholder="Drop a studio portrait photo"></image-slot>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <footer class="ff-footer" style="background: #FBDCC4; padding: 64px 48px 32px; width: 100vw; max-width: 100vw; margin-left: calc(50% - 50vw); box-sizing: border-box; overflow: hidden;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; flex-wrap: wrap; max-width: 1300px; margin: 0 auto;">
+      <p style="font-family: Helvetica, Arial, sans-serif; font-weight: 500; font-size: clamp(22px, 2.6vw, 32px); line-height: 1.25; letter-spacing: -0.01em; margin: 0; max-width: 620px; color: #1A1310;">CREATE FREELY, PAINT BOLDLY, AND MAKE SOMETHING YOU'RE PROUD OF</p>
+      <div class="ff-footer-links" style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+        <a href="#" style="background: #fff; padding: 10px 16px; border-radius: 12px 12px 12px 0px; font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: #1A1310;">ABOUT</a>
+        <a href="#" style="background: #fff; padding: 10px 16px; border-radius: 12px 12px 12px 0px; font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: #1A1310;">HOW IT WORKS</a>
+        <a href="#" style="background: #fff; padding: 10px 16px; border-radius: 12px 12px 12px 0px; font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: #1A1310;">WORKSHOPS</a>
+        <a href="#" style="background: #fff; padding: 10px 16px; border-radius: 12px 12px 12px 0px; font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: #1A1310;">GALLERY</a>
+        <a ref="{{ footerCtaRef }}" href="#" onMouseEnter="{{ onFooterCtaEnter }}" onMouseLeave="{{ onFooterCtaLeave }}" style="display: flex; align-items: center; gap: 0; margin-top: 8px;">
+          <span style="{{ footerCtaTextStyle }}">BOOK A CLASS</span>
+          <span style="background: #FF5C29; color: #fff; width: 40px; height: 40px; border-radius: 8px 0px 8px 8px; position: relative; overflow: hidden; transition: background .2s ease;" style-hover="background: #FF7A4D;">
+            <span style="{{ footerCtaChevronStyle }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h13M15 6l6 6-6 6" stroke-linejoin="round"></path></svg></span>
+            <span style="{{ footerCtaArrowStyle }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h16M13 5l7 7-7 7"></path></svg></span>
+          </span>
+        </a>
+      </div>
+    </div>
+    <div style="display: flex; gap: 64px; flex-wrap: wrap; max-width: 1300px; margin: 64px auto 0; font-size: 16px; line-height: 1.5; color: #1A1310;">
+      <div>HELLO@PAPERMOONSTUDIO.COM<br>+1 (555) 987-6543</div>
+      <div>45 STUDIO LANE<br>YOUR CITY</div>
+    </div>
+    <div style="margin: 40px 0 0; overflow: hidden; white-space: nowrap;">
+      <div style="display: inline-flex; animation: fkMarquee 32s linear infinite;">
+        <span style="font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: clamp(80px, 12vw, 190px); line-height: 1; letter-spacing: -0.02em; color: #1A1310; padding-right: 48px;">PAPER MOON STUDIO PAPER MOON STUDIO</span>
+        <span style="font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: clamp(80px, 12vw, 190px); line-height: 1; letter-spacing: -0.02em; color: #1A1310; padding-right: 48px;">PAPER MOON STUDIO PAPER MOON STUDIO</span>
+      </div>
+    </div>
+    <div style="max-width: 1300px; margin: 24px auto 0; font-size: 13px; letter-spacing: 0.02em; color: #1A1310;">&#169; 2026 PAPER MOON STUDIO. SEE YOU IN THE STUDIO.</div>
+  </footer>
+
+</helmet>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  frameRef = React.createRef();
+  imgWrapRef = React.createRef();
+  heroTextRef = React.createRef();
+  cursorRef = React.createRef();
+  howFrameRef = React.createRef();
+  howImgWrapRef = React.createRef();
+  stepsHeadingRef = React.createRef();
+  stepsCardRef = React.createRef();
+  stepDescRefs = [0, 1, 2].map(() => React.createRef());
+  secondSectionRef = React.createRef();
+  seasonImgRefs = [0, 1, 2, 3].map(() => ({ clip: React.createRef(), wrap: React.createRef() }));
+  seasonRevealed = [false, false, false, false];
+  seasonLabelRevealed = [false, false, false, false];
+  statsHeadingRef = React.createRef();
+  statsSectionRef = React.createRef();
+  pageWrapRef = React.createRef();
+  statCardRefs = [0, 1, 2].map(() => React.createRef());
+  moreFrameRef = React.createRef();
+  moreImgWrapRef = React.createRef();
+  whoImgRefs = [0, 1, 2, 3].map(() => ({ clip: React.createRef(), wrap: React.createRef() }));
+  whoRevealed = [false, false, false, false];
+  seasonHeadRef = React.createRef();
+  seasonPinRef = React.createRef();
+  seasonRowRef = React.createRef();
+  moreHeadRef = React.createRef();
+  whoHeadRef = React.createRef();
+  ctaHeadRef = React.createRef();
+  footerCtaRef = React.createRef();
+  ctaImgRefs = [0, 1, 2].map(() => ({ clip: React.createRef(), wrap: React.createRef() }));
+  ctaImgRevealed = [false, false, false];
+  _seasonHeadRevealed = false;
+  _morePillsRevealed = false;
+  _moreHeadRevealed = false;
+  _whoHeadRevealed = false;
+  _ctaHeadRevealed = false;
+  _ctaParaRevealed = false;
+  _ctaButtonRevealed = false;
+  _ctaImagesRevealed = false;
+  _ctaSequenceStarted = false;
+  _hoverCta = false;
+  _hoverFooterCta = false;
+  _footerCtaMobilePlayed = false;
+  _footerCtaChecked = false;
+  _openFaq = 0;
+  _faqPulse = [0, 0, 0, 0];
+  faqHeadingRef = React.createRef();
+  _faqHeadingVisible = false;
+  faqData = [
+    { q: 'DO I NEED ANY EXPERIENCE?', a: 'None at all. Every session is designed to welcome first-timers as warmly as returning artists.' },
+    { q: "WHAT'S INCLUDED IN THE PRICE?", a: 'All materials, tools, and instructor guidance are included, just show up ready to create.' },
+    { q: 'CAN KIDS JOIN?', a: 'Yes. We run family-friendly sessions and offer age-appropriate projects for younger makers.' },
+    { q: 'DO YOU OFFER PRIVATE EVENTS?', a: 'Yes, birthday parties, team offsites, and bachelorette sessions can all be booked privately.' },
+  ];
+  state = { statsRevealed: [false, false, false, false], statCounts: [0, 0, 0] };
+  statTargets = [500, 40, 12];
+  _stepsToken = 0;
+  _heroToken = 0;
+  _stepsWasVisible = false;
+  _stepsCardRevealed = false;
+  _imagesReady = false;
+  _imgHover = false;
+  _lastScrollY = 0;
+  _navHidden = false;
+  _hoverNav = false;
+  _hoverHero = false;
+  _heroMobilePlayed = false;
+  _openStep = 0;
+  _mobileMenuOpen = false;
+  _ctaMobilePlayed = false;
+  isMobileNow() { return window.innerWidth <= 780; }
+  _openToken = 0;
+  _loading = true;
+  _secondVisible = false;
+
+  stepsData = [
+    { num: '01', title: 'CHOOSE YOUR MEDIUM', text: "Pick from painting, pottery, sketching, or mixed media, whatever calls to you today." },
+    { num: '02', title: 'BOOK YOUR SLOT', text: "Reserve an open studio session or a guided workshop that fits your schedule." },
+    { num: '03', title: 'CREATE AND TAKE HOME', text: "Work at your own pace with all materials and instructor guidance included, then bring your piece home." },
+  ];
+
+  ticking = false;
+  _rafId = null;
+
+  runLoop = () => {
+    this.applyScrollEffects();
+    this._rafId = requestAnimationFrame(this.runLoop);
+  };
+
+  handleScroll = () => {
+    if (this.ticking) return;
+    this.ticking = true;
+    requestAnimationFrame(() => {
+      this.ticking = false;
+      this.applyScrollEffects();
+    });
+  };
+
+  applyScrollEffects = () => {
+      const frame = this.frameRef.current;
+      const wrap = this.imgWrapRef.current;
+      const vh = window.innerHeight;
+      if (frame && wrap) {
+        const rect = frame.getBoundingClientRect();
+        const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
+        const shift = (progress - 0.5) * (rect.height * 0.6);
+        this._heroParallax = this._heroParallax == null ? shift : this._heroParallax + (shift - this._heroParallax) * 0.1;
+        wrap.style.transform = `translateY(${this._heroParallax}px)`;
+      }
+
+      const textEl = this.heroTextRef.current;
+      if (textEl) {
+        const textShift = Math.min(window.scrollY * 0.25, 90);
+        textEl.style.transform = `translateY(${-textShift}px)`;
+        textEl.style.opacity = String(Math.max(0, 1 - window.scrollY / 350));
+      }
+
+      if (!this._secondVisible && window.scrollY > window.innerHeight * 0.5) {
+        this._secondVisible = true;
+        this.forceUpdate();
+      }
+
+      const y = window.scrollY;
+      const goingDown = y > this._lastScrollY + 2;
+      const goingUp = y < this._lastScrollY - 2;
+      let navHiddenNext = this._navHidden;
+      if (y < 40) navHiddenNext = false;
+      else if (goingDown) navHiddenNext = true;
+      else if (goingUp) navHiddenNext = false;
+      if (navHiddenNext !== this._navHidden) {
+        this._navHidden = navHiddenNext;
+        this.forceUpdate();
+      }
+      this._lastScrollY = y;
+
+      const howFrame = this.howFrameRef.current;
+      const howWrap = this.howImgWrapRef.current;
+      if (howFrame && howWrap) {
+        const hRect = howFrame.getBoundingClientRect();
+        const hProgress = Math.max(0, Math.min(1, (vh - hRect.top) / (vh + hRect.height)));
+        const hShift = (hProgress - 0.5) * (hRect.height * 0.35);
+        this._howParallax = this._howParallax == null ? hShift : this._howParallax + (hShift - this._howParallax) * 0.09;
+        howWrap.style.transform = `translateY(${this._howParallax}px)`;
+      }
+
+      const card = this.stepsCardRef.current;
+
+      const headEl = this.statsHeadingRef.current;
+      if (headEl && !this.state.statsRevealed[0]) {
+        const r = headEl.getBoundingClientRect();
+        if (r.top < vh * 0.95 && r.bottom > 0) {
+          this.setState(s => {
+            const next = s.statsRevealed.slice();
+            next[0] = true;
+            for (let i = 1; i <= 3; i++) next[i] = true;
+            return { statsRevealed: next };
+          });
+          this.statCardRefs.forEach((ref, i) => {
+            setTimeout(() => this.startCountUp(i), (1.0 + i * 0.1 + 0.35) * 1000);
+          });
+        }
+      }
+
+      const statsSec = this.statsSectionRef.current;
+      if (statsSec) {
+        const r = statsSec.getBoundingClientRect();
+        const center = r.top + r.height / 2;
+        const signedDist = center - vh / 2;
+        const dist = Math.abs(signedDist);
+        const plateau = vh * 0.55;
+        const falloff = vh * 0.2;
+        const raw = dist <= plateau ? 1 : Math.max(0, 1 - (dist - plateau) / falloff);
+        let eased;
+        if (dist <= plateau) {
+          eased = 1;
+        } else if (signedDist > 0) {
+          eased = raw < 0.5 ? 4 * raw ** 3 : 1 - Math.pow(-2 * raw + 2, 3) / 2;
+        } else {
+          const fade = 1 - raw;
+          eased = 1 - (1 - Math.pow(1 - fade, 3));
+        }
+        document.body.style.backgroundColor = this.lerpColor('#FFF4E9', '#FF5C29', eased);
+      }
+
+      const faqHeadEl = this.faqHeadingRef.current;
+      if (faqHeadEl && !this._faqHeadingVisible) {
+        const fRect = faqHeadEl.getBoundingClientRect();
+        if (fRect.top < vh * 0.85) {
+          this._faqHeadingVisible = true;
+          this.forceUpdate();
+        }
+      }
+
+      const revealHead = (ref, flagName) => {
+        if (this[flagName]) return;
+        const el = ref.current;
+        if (el && el.getBoundingClientRect().top < vh * 0.9) {
+          this[flagName] = true;
+          this.forceUpdate();
+        }
+      };
+      revealHead(this.seasonHeadRef, '_seasonHeadRevealed');
+      revealHead(this.moreHeadRef, '_moreHeadRevealed');
+      revealHead(this.whoHeadRef, '_whoHeadRevealed');
+      this.checkCtaSequence(vh);
+
+      if (this._ctaImagesRevealed) {
+        this.ctaImgRefs.forEach(({ clip, wrap }, i) => {
+          const clipEl = clip.current;
+          const wrapEl = wrap.current;
+          if (clipEl && wrapEl) {
+            const cRect2 = clipEl.getBoundingClientRect();
+            const cProg2 = Math.max(0, Math.min(1, (vh - cRect2.top) / (vh + cRect2.height)));
+            wrapEl.style.transform = `translateY(${(cProg2 - 0.5) * (cRect2.height * 0.4)}px)`;
+            if (!this.ctaImgRevealed[i] && cRect2.top < vh * 0.9) {
+              this.ctaImgRevealed[i] = true;
+              clipEl.style.transition = `opacity 0.6s ease ${0.3 + i * 0.12}s, transform 0.6s ease ${0.3 + i * 0.12}s`;
+            }
+            if (this.ctaImgRevealed[i]) {
+              clipEl.style.opacity = '1';
+              clipEl.style.transform = 'translateY(0)';
+            }
+          }
+        });
+      }
+
+      const moreFrame = this.moreFrameRef.current;
+      const moreWrap = this.moreImgWrapRef.current;
+      if (moreFrame && moreWrap) {
+        const mRect = moreFrame.getBoundingClientRect();
+        const mProgress = Math.max(0, Math.min(1, (vh - mRect.top) / (vh + mRect.height)));
+        const mShift = (mProgress - 0.5) * (mRect.height * 0.4);
+        this._moreParallax = this._moreParallax == null ? mShift : this._moreParallax + (mShift - this._moreParallax) * 0.05;
+        moreWrap.style.transform = `translateY(${this._moreParallax}px) scaleX(-1)`;
+        if (!this._morePillsRevealed && mProgress >= 0.5) {
+          this._morePillsRevealed = true;
+          this.forceUpdate();
+        }
+      }
+
+      this.seasonImgRefs.forEach(({ clip, wrap }, i) => {
+        const clipEl = clip.current;
+        const wrapEl = wrap.current;
+        if (clipEl && wrapEl) {
+          const sRect = clipEl.getBoundingClientRect();
+          const sProgress = Math.max(0, Math.min(1, (vh - sRect.top) / (vh + sRect.height)));
+          const sShift = (sProgress - 0.5) * (sRect.height * 0.6);
+          wrapEl.style.transform = `translateY(${sShift}px)`;
+        }
+      });
+
+      this.whoImgRefs.forEach(({ clip, wrap }, i) => {
+        const clipEl = clip.current;
+        const wrapEl = wrap.current;
+        if (clipEl && wrapEl) {
+          const wRect = clipEl.getBoundingClientRect();
+          const wProgress = Math.max(0, Math.min(1, (vh - wRect.top) / (vh + wRect.height)));
+          const wShift = (wProgress - 0.5) * (wRect.height * 0.5);
+          wrapEl.style.transform = `translateY(${wShift}px)`;
+
+          if (this._whoHeadRevealed && !this.whoRevealed[i] && wRect.top < vh * 0.85) {
+            this.whoRevealed[i] = true;
+            clipEl.style.transition = `opacity 0.4s ease-in ${i * 0.2}s, transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) ${i * 0.2}s`;
+          }
+          if (this.whoRevealed[i]) {
+            clipEl.style.opacity = '1';
+            clipEl.style.transform = 'scale(1)';
+          }
+        }
+      });
+
+      const stepsCard = this.stepsCardRef.current;
+      if (stepsCard && !this._stepsCardRevealed) {
+        const scRect = stepsCard.getBoundingClientRect();
+        if (scRect.top < vh * 0.85) {
+          this._stepsCardRevealed = true;
+          stepsCard.style.transition = 'opacity 0.8s ease-in, transform 0.9s ease-in';
+          stepsCard.style.opacity = '1';
+          stepsCard.style.transform = 'translateX(0)';
+        }
+      }
+  };
+
+  sizeHero = () => {
+    const nav = document.querySelector('nav');
+    const title = this.heroTextRef.current;
+    const frame = this.frameRef.current;
+    if (!nav || !title || !frame) return;
+    const available = window.innerHeight - nav.offsetHeight - title.offsetHeight - 24;
+    frame.style.height = Math.max(140, available) + 'px';
+  };
+
+  handleMouseMove = (e) => {
+    if (this.cursorRef.current) {
+      this.cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+    }
+  };
+
+  revealSeasonItems = () => {
+    let changed = false;
+    const vh = window.innerHeight;
+    this.seasonImgRefs.forEach(({ clip }, i) => {
+      if (this.seasonRevealed[i]) return;
+      const el = clip.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      if (rect.top < vh * 0.92 && rect.bottom > 0) {
+        this.seasonRevealed[i] = true;
+        const rev = (this.seasonImgRefs.length - 1 - i) * 0.18;
+        el.style.transition = `opacity 0.6s ease ${rev}s, transform 0.6s cubic-bezier(0.16,1,0.3,1) ${rev}s`;
+        el.style.opacity = '1';
+        el.style.transform = 'scale(1)';
+        changed = true;
+      }
+    });
+    return changed;
+  };
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll, { passive: true });
+    window.addEventListener('mousemove', this.handleMouseMove, { passive: true });
+    window.addEventListener('resize', this.sizeHero);
+    this.sizeHero();
+    this._rafId = requestAnimationFrame(this.runLoop);
+    this.handleScroll();
+    this.startPeriodicReveal();
+    this.setupSeasonScrollJack();
+    setTimeout(() => { if (this.isMobileNow()) { this._heroMobilePlayed = true; this._hoverHero = true; this.forceUpdate(); } }, 1200);
+    window.addEventListener('scroll', this.updateSeasonPin, { passive: true });
+    window.addEventListener('resize', this.updateSeasonPin);
+    window.addEventListener('resize', () => this.forceUpdate());
+    this.updateSeasonPin();
+    setTimeout(this.updateSeasonPin, 400);
+    const allSrcs = [
+      'assets/hero.png', 'assets/how-it-works-pottery.png', 'assets/more-than-class.png',
+      'assets/workshop-painting.png', 'assets/workshop-pottery.png', 'assets/workshop-sketching.png', 'assets/workshop-mixed-media.png',
+      'assets/who-beginners.png', 'assets/who-families.png', 'assets/who-teams.png',
+      'https://images.pexels.com/photos/5302959/pexels-photo-5302959.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'assets/cta-1.png', 'assets/cta-2.png', 'assets/cta-3.png',
+    ];
+    const minTime = new Promise((resolve) => setTimeout(resolve, 2200));
+    const imgsReady = Promise.all(allSrcs.map((src) => new Promise((resolve) => {
+      const img = new Image();
+      img.onload = resolve;
+      img.onerror = resolve;
+      img.src = src;
+    })));
+    Promise.all([minTime, imgsReady]).then(() => {
+      this._loading = false;
+      this._heroToken = 1;
+      this.forceUpdate();
+    });
+  }
+
+  updateSeasonPin = () => {
+    const wrap = this.seasonPinRef.current;
+    const row = this.seasonRowRef.current;
+    if (!wrap || !row) return;
+    if (window.innerWidth > 780) { wrap.style.height = ''; row.style.transform = ''; return; }
+    this.seasonImgRefs.forEach(({ clip }, i) => {
+      if (this.seasonLabelRevealed[i]) return;
+      const el = clip.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const center = r.left + r.width / 2;
+      if (center < window.innerWidth * 0.75 && center > window.innerWidth * 0.25) {
+        this.seasonLabelRevealed[i] = true;
+        this.forceUpdate();
+      }
+    });
+    const max = row.scrollWidth - row.clientWidth;
+    if (max <= 0) { wrap.style.height = ''; row.style.transform = ''; return; }
+    wrap.style.height = `${row.offsetHeight + max}px`;
+    const headerOffset = 76;
+    const rect = wrap.getBoundingClientRect();
+    const progress = Math.min(1, Math.max(0, (headerOffset - rect.top) / max));
+    row.style.transform = `translateX(${-progress * max}px)`;
+  };
+
+  checkCtaSequence = (vh) => {
+    if (this._ctaSequenceStarted) return;
+    const el = this.ctaHeadRef.current;
+    if (!el || el.getBoundingClientRect().top >= vh * 0.9) return;
+    this._ctaSequenceStarted = true;
+    this._ctaHeadRevealed = true;
+    this.forceUpdate();
+    setTimeout(() => { this._ctaParaRevealed = true; this.forceUpdate(); }, 500);
+    setTimeout(() => {
+      this._ctaButtonRevealed = true;
+      this.forceUpdate();
+      if (this.isMobileNow()) setTimeout(() => { this._hoverCta = true; this._ctaMobilePlayed = true; this.forceUpdate(); }, 500);
+    }, 950);
+    setTimeout(() => { this._ctaImagesRevealed = true; this.forceUpdate(); }, 1450);
+  };
+
+  setupSeasonScrollJack = () => {
+    const row = document.querySelector('.ff-season-row');
+    if (!row) return;
+    const isCarousel = () => row.scrollWidth > row.clientWidth + 4;
+    row.addEventListener('wheel', (e) => {
+      if (!isCarousel()) return;
+      const atStart = row.scrollLeft <= 0;
+      const atEnd = row.scrollLeft >= row.scrollWidth - row.clientWidth - 1;
+      if ((e.deltaY > 0 && !atEnd) || (e.deltaY < 0 && !atStart)) {
+        e.preventDefault();
+        row.scrollLeft += e.deltaY;
+      }
+    }, { passive: false });
+  };
+
+  startPeriodicReveal = () => {
+    setInterval(() => {
+      let changed = false;
+      if (!this.state.statsRevealed[0] && this.statsHeadingRef.current && this.statsHeadingRef.current.getBoundingClientRect().top < window.innerHeight) {
+        this.setState(s => { const next = s.statsRevealed.slice(); for (let i = 0; i <= 3; i++) next[i] = true; return { statsRevealed: next }; });
+        this.statCardRefs.forEach((ref, i) => setTimeout(() => this.startCountUp(i), (1.0 + i * 0.1 + 0.35) * 1000));
+      }
+      ['seasonHeadRef,_seasonHeadRevealed', 'moreHeadRef,_moreHeadRevealed', 'whoHeadRef,_whoHeadRevealed'].forEach(pair => {
+        const [refName, flagName] = pair.split(',');
+        const el = this[refName].current;
+        if (!this[flagName] && el && el.getBoundingClientRect().top < window.innerHeight) {
+          this[flagName] = true;
+          changed = true;
+        }
+      });
+      this.checkCtaSequence(window.innerHeight);
+      if (!this._faqHeadingVisible && this.faqHeadingRef.current && this.faqHeadingRef.current.getBoundingClientRect().top < window.innerHeight) {
+        this._faqHeadingVisible = true;
+        changed = true;
+      }
+      if (this.revealSeasonItems()) changed = true;
+      if (!this._footerCtaChecked && this.footerCtaRef.current && this.footerCtaRef.current.getBoundingClientRect().top < window.innerHeight * 0.9) {
+        this._footerCtaChecked = true;
+        if (this.isMobileNow()) setTimeout(() => { this._hoverFooterCta = true; this._footerCtaMobilePlayed = true; this.forceUpdate(); }, 500);
+      }
+      if (changed) this.forceUpdate();
+    }, 300);
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('mousemove', this.handleMouseMove);
+    window.removeEventListener('resize', this.sizeHero);
+    if (this._io) this._io.disconnect();
+    if (this._rafId) cancelAnimationFrame(this._rafId);
+  }
+
+  startCountUp(idx) {
+    const target = this.statTargets[idx];
+    const duration = 1200;
+    const start = performance.now();
+    const tick = (now) => {
+      const p = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - p, 3);
+      this.setState(s => {
+        const next = s.statCounts.slice();
+        next[idx] = Math.round(eased * target);
+        return { statCounts: next };
+      });
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  lerpColor(a, b, t) {
+    const pa = [1, 3, 5].map(i => parseInt(a.slice(i, i + 2), 16));
+    const pb = [1, 3, 5].map(i => parseInt(b.slice(i, i + 2), 16));
+    const c = pa.map((v, i) => Math.round(v + (pb[i] - v) * t));
+    return `rgb(${c[0]}, ${c[1]}, ${c[2]})`;
+  }
+
+  renderWordsHeading(lines, startDelay, token, colors, fast, pop) {
+    let idx = 0;
+    const step = fast ? 0.03 : 0.06;
+    const dur = pop ? 0.65 : (fast ? 0.4 : 0.7);
+    const anim = pop ? `fkPopUp ${dur}s cubic-bezier(0.34,1.56,0.64,1) both` : `fkSlideUp ${dur}s cubic-bezier(0.16,1,0.3,1) both`;
+    return lines.map((line, li) => React.createElement('div', { key: `${token || 0}-${li}`, style: colors ? { color: colors[li] } : undefined },
+      line.split(' ').map((w, wi, arr) => {
+        const delay = startDelay + idx * step;
+        idx++;
+        return React.createElement('span', { key: wi, style: { display: 'inline-block', overflow: pop ? 'visible' : 'hidden', verticalAlign: 'top' } },
+          React.createElement('span', { style: { display: 'inline-block', animation: anim, animationDelay: `${delay}s` } }, w + (wi < arr.length - 1 ? '\u00A0' : ''))
+        );
+      })
+    ));
+  }
+
+  renderWordsHeadingGated(lines, revealed, token, colors, fast, pop) {
+    if (!revealed) {
+      return lines.map((line, li) => React.createElement('div', { key: `g-${li}`, style: colors ? { color: colors[li] } : undefined },
+        line.split(' ').map((w, wi, arr) => React.createElement('span', { key: wi, style: { display: 'inline-block', opacity: 0 } }, w + (wi < arr.length - 1 ? '\u00A0' : '')))
+      ));
+    }
+    return this.renderWordsHeading(lines, 0, token || 1, colors, fast, pop);
+  }
+
+  renderAnimatedWordsLeft(text, tokenKey) {
+    return text.split(' ').map((w, i, arr) => React.createElement('span', {
+      key: `${tokenKey}-${i}`,
+      style: {
+        display: 'inline-block',
+        animation: 'fkFadeLeft .45s cubic-bezier(0.16,1,0.3,1) both',
+        animationDelay: `${i * 0.02}s`,
+      },
+    }, w + (i < arr.length - 1 ? '\u00A0' : '')));
+  }
+
+  renderAnimatedWords(text, tokenKey) {
+    return text.split(' ').map((w, i, arr) => React.createElement('span', {
+      key: `${tokenKey}-${i}`,
+      style: {
+        display: 'inline-block',
+        animation: 'fkFadeUp .5s ease-in both',
+        animationDelay: `${i * 0.02}s`,
+      },
+    }, w + (i < arr.length - 1 ? '\u00A0' : '')));
+  }
+
+  renderVals() {
+    const arrowStyle = (hover, dist) => ({
+      position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
+      transition: hover ? 'opacity .15s ease, transform .15s ease' : 'opacity .2s ease .15s, transform .2s ease .15s',
+      opacity: hover ? 0 : 1,
+      transform: hover ? `translateX(${dist}px)` : 'translateX(0)',
+    });
+    const chevronStyle = (hover) => ({
+      position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
+      transition: hover ? 'opacity .2s ease .15s, transform .2s ease .15s' : 'opacity .15s ease, transform .15s ease',
+      opacity: hover ? 1 : 0,
+      transform: hover ? 'translateX(0)' : 'translateX(-20px)',
+    });
+    const steps = this.stepsData.map((s, i) => {
+      const open = this._openStep === i;
+      const isLast = i === this.stepsData.length - 1;
+      return {
+        ...s,
+        open,
+        descInnerRef: this.stepDescRefs[i],
+        rowStyle: {
+          borderBottom: isLast ? 'none' : '1px solid rgba(26,19,16,0.12)',
+          padding: '20px 0', cursor: 'pointer', transition: 'transform .15s ease',
+        },
+        descNode: React.createElement('span', {
+          key: `${i}-${this._openToken}`,
+          style: { display: 'inline-block', animation: open ? 'fkFadeLeft .5s cubic-bezier(0.16,1,0.3,1) both' : 'none' },
+        }, s.text),
+        onToggle: () => {
+          const opening = this._openStep !== i;
+          this._openStep = opening ? i : -1;
+          if (opening) this._openToken++;
+          this.forceUpdate();
+        },
+        descStyle: {
+          maxHeight: open ? `${(this.stepDescRefs[i].current ? this.stepDescRefs[i].current.scrollHeight : 220)}px` : '0px',
+          opacity: open ? 1 : 0,
+          overflow: 'hidden',
+          transition: 'max-height .5s cubic-bezier(0.4,0,0.2,1), opacity .35s ease',
+        },
+      };
+    });
+    const navStyle = `background: rgba(255,244,233,0.55); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transform: translateY(${this._navHidden ? '-100%' : '0'}); transition: transform .35s ease, background .3s ease;`;
+    const loaderStyle = {
+      position: 'fixed', top: '84px', left: 0, right: 0, bottom: 0, background: '#FFF4E9', zIndex: 9999,
+      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px',
+      transition: 'opacity .5s ease', opacity: this._loading ? 1 : 0,
+      pointerEvents: this._loading ? 'auto' : 'none',
+    };
+    const secondSectionStyle = this._secondVisible
+      ? 'opacity: 1; transform: translateY(0); transition: opacity .6s ease-out, transform .6s ease-out; will-change: opacity, transform;'
+      : 'opacity: 0; transform: translateY(24px); transition: opacity .6s ease-out, transform .6s ease-out; will-change: opacity, transform;';
+    const howImageVisStyle = this._imgHover
+      ? 'opacity: 1; filter: grayscale(0); transition: opacity .5s ease, filter .5s ease;'
+      : 'opacity: 1; filter: grayscale(0.12); transition: opacity .5s ease, filter .5s ease;';
+    const seasonItems = [
+      { id: 'workshop-painting', name: 'PAINTING', src: 'assets/workshop-painting.png', lift: 0 },
+      { id: 'workshop-pottery', name: 'POTTERY', src: 'assets/workshop-pottery.png', lift: 70 },
+      { id: 'workshop-sketching', name: 'SKETCHING', src: 'assets/workshop-sketching.png', lift: 140 },
+      { id: 'workshop-mixed-media', name: 'MIXED MEDIA', src: 'assets/workshop-mixed-media.png', lift: 210 },
+    ].map((it, i) => ({ ...it, clipRef: this.seasonImgRefs[i].clip, wrapRef: this.seasonImgRefs[i].wrap, labelClass: 'ff-workshop-label' + (this.seasonLabelRevealed[i] ? ' ff-workshop-label-in' : '') }));
+    const statItems = [
+      { suffix: '', label: 'ARTISTS TRAINED' },
+      { suffix: '', label: 'WORKSHOPS EVERY MONTH' },
+      { suffix: '', label: 'MEDIUMS TAUGHT' },
+    ].map((it, i) => ({
+      ...it,
+      cardRef: this.statCardRefs[i],
+      delay: (window.innerWidth <= 780 ? i * 0.28 : 1.0 + i * 0.1).toFixed(2),
+      display: `${this.state.statCounts[i]}${it.suffix}`,
+      opacity: this.state.statsRevealed[i + 1] ? 1 : 0,
+      transform: this.state.statsRevealed[i + 1] ? 'translate(0,0) scale(1)' : (window.innerWidth <= 780 ? 'translate(60px,-60px) scale(0.55)' : 'translateX(-60px)'),
+      radius: '24px 0px 24px 24px',
+    }));
+    const eyebrowStyle = (revealed) => ({
+      color: '#FF3B00', fontWeight: 500, fontSize: '14px', letterSpacing: '0.03em',
+      opacity: revealed ? 1 : 0, transform: revealed ? 'translateY(0)' : 'translateY(14px)',
+      transition: 'opacity .5s ease, transform .5s ease', display: 'inline-block',
+    });
+    const afterHeadStyle = (revealed, delay) => ({
+      opacity: revealed ? 1 : 0, transform: revealed ? 'translateY(0)' : 'translateY(24px)',
+      transition: `opacity .6s ease ${delay}s, transform .6s ease ${delay}s`,
+    });
+    const faqItems = this.faqData.map((f, i) => {
+      const open = this._openFaq === i;
+      return {
+        question: f.q,
+        answer: f.a,
+        onToggle: () => {
+          this._openFaq = this._openFaq === i ? -1 : i;
+          this._faqPulse[i]++;
+          this.forceUpdate();
+        },
+        iconWrapStyle: { position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flex: '0 0 auto', width: '32px', height: '32px' },
+        pulseKey: this._faqPulse[i],
+        pulseStyle: this._faqPulse[i] > 0 ? {
+          position: 'absolute', inset: 0, borderRadius: '50%', background: '#FF3B00',
+          animation: 'fkPop .5s cubic-bezier(0.16,1,0.3,1) both',
+        } : { position: 'absolute', inset: 0 },
+        iconStyle: { transition: 'transform .35s cubic-bezier(0.34,1.56,0.64,1)', transform: open ? 'rotate(45deg)' : 'rotate(0deg)' },
+        answerStyle: {
+          display: 'grid',
+          gridTemplateRows: open ? '1fr' : '0fr',
+          opacity: open ? 1 : 0,
+          transform: open ? 'translateY(0)' : 'translateY(-4px)',
+          transition: 'grid-template-rows .5s cubic-bezier(0.4,0,0.2,1), opacity .35s ease, transform .5s cubic-bezier(0.4,0,0.2,1)',
+        },
+      };
+    });
+    const whoItems = [
+      { id: 'who-beginners', name: 'BEGINNERS', src: 'assets/who-beginners.png' },
+      { id: 'who-families', name: 'FAMILIES', src: 'assets/who-families.png' },
+      { id: 'who-teams', name: 'TEAMS', src: 'assets/who-teams.png' },
+      { id: 'who-datenight', name: 'DATE NIGHT', src: 'https://images.pexels.com/photos/5302959/pexels-photo-5302959.jpeg?auto=compress&cs=tinysrgb&w=800' },
+    ].map((it, i) => ({ ...it, clipRef: this.whoImgRefs[i].clip, wrapRef: this.whoImgRefs[i].wrap, radius: ['32px 32px 0px 32px', '32px 32px 32px 0px', '32px 0px 32px 32px', '0px 32px 32px 32px'][i], origin: ['bottom right', 'bottom left', 'top right', 'top left'][i] }));
+    const ctaImages = [
+      { id: 'cta-1', src: 'assets/cta-1.png' },
+      { id: 'cta-2', src: 'assets/cta-2.png' },
+      { id: 'cta-3', src: 'assets/cta-3.png' },
+    ].map((it, i) => ({ ...it, clipRef: this.ctaImgRefs[i].clip, wrapRef: this.ctaImgRefs[i].wrap, radius: ['28px 28px 0px 28px', '28px 0px 28px 28px', '0px 28px 28px 28px'][i] }));
+    const morePills = ['NO EXPERIENCE NEEDED', 'ALL MATERIALS INCLUDED', 'SMALL GROUP SIZES'].map((text, i) => ({
+      text,
+      style: {
+        background: '#fff', padding: '12px 20px', borderRadius: '16px 0px 16px 16px', fontSize: '15px', fontWeight: 'normal', letterSpacing: '0.02em', color: '#FF3B00',
+        opacity: this._morePillsRevealed ? 1 : 0, transform: this._morePillsRevealed ? 'scale(1)' : 'scale(0.4)', transformOrigin: 'bottom left',
+        transition: `opacity .5s ease ${i * 0.15}s, transform .6s cubic-bezier(0.34, 1.56, 0.64, 1) ${i * 0.15}s`,
+      },
+    }));
+    const navLinksClass = 'nav-links' + (this._mobileMenuOpen ? ' nav-links-open' : '');
+    const navScrimClass = 'ff-menu-scrim' + (this._mobileMenuOpen ? ' ff-menu-scrim-open' : '');
+    const hamburgerLineBase = { display: 'block', width: '18px', height: '2px', background: '#1A1310', borderRadius: '2px', transition: 'transform .25s ease, opacity .25s ease' };
+    const hamburgerLine1Style = this._mobileMenuOpen ? { ...hamburgerLineBase, transform: 'translateY(7px) rotate(45deg)' } : hamburgerLineBase;
+    const hamburgerLine2Style = this._mobileMenuOpen ? { ...hamburgerLineBase, opacity: 0 } : hamburgerLineBase;
+    const hamburgerLine3Style = this._mobileMenuOpen ? { ...hamburgerLineBase, transform: 'translateY(-7px) rotate(-45deg)' } : hamburgerLineBase;
+    return {
+      navLinksClass,
+      navScrimClass,
+      hamburgerLine1Style,
+      hamburgerLine2Style,
+      hamburgerLine3Style,
+      toggleMobileMenu: () => { this._mobileMenuOpen = !this._mobileMenuOpen; this.forceUpdate(); },
+      closeMobileMenu: () => { if (this._mobileMenuOpen) { this._mobileMenuOpen = false; this.forceUpdate(); } },
+      statsHeading: this.renderWordsHeadingGated(['NUMBERS THAT', 'TELL OUR STORY'], this.state.statsRevealed[0], 0, ['#fff', '#fff'], true),
+      statsParaStyle: { maxWidth: '300px', fontSize: '15px', fontWeight: 'normal', lineHeight: 1.5, margin: '8px 0 0', color: '#fff', opacity: this.state.statsRevealed[0] ? 1 : 0, transform: this.state.statsRevealed[0] ? 'translateY(0)' : 'translateY(24px)', transition: 'opacity .6s ease .5s, transform .6s ease .5s' },
+      moreHeading: this.renderWordsHeadingGated(['MORE THAN', 'JUST A CLASS'], this._moreHeadRevealed, 0),
+      morePStyle: {
+        fontSize: '18px', lineHeight: 1.55, margin: '16px 0 0', color: '#fff', maxWidth: '420px',
+        opacity: this._moreHeadRevealed ? 1 : 0, transform: this._moreHeadRevealed ? 'translateY(0)' : 'translateY(16px)',
+        transition: 'opacity .5s ease .35s, transform .5s ease .35s',
+      },
+      morePillsWrapStyle: '',
+      morePills,
+      whoHeading: this.renderWordsHeadingGated(['BUILT FOR EVERY', 'KIND OF MAKER'], this._whoHeadRevealed, 0),
+      whoEyebrowStyle: eyebrowStyle(this._whoHeadRevealed),
+      seasonHeading: this.renderWordsHeadingGated(['EXPLORE EVERY', 'MEDIUM'], this._seasonHeadRevealed, 0),
+      seasonEyebrowStyle: eyebrowStyle(this._seasonHeadRevealed),
+      statsHeadingRef: this.statsHeadingRef,
+      statsSectionRef: this.statsSectionRef,
+      pageWrapRef: this.pageWrapRef,
+      seasonHeadRef: this.seasonHeadRef,
+      seasonPinRef: this.seasonPinRef,
+      seasonRowRef: this.seasonRowRef,
+      moreHeadRef: this.moreHeadRef,
+      whoHeadRef: this.whoHeadRef,
+      ctaHeadRef: this.ctaHeadRef,
+      ctaHeading: this.renderWordsHeadingGated(['READY TO GET', 'YOUR HANDS DIRTY?'], this._ctaHeadRevealed, 0),
+      ctaBodyStyle: afterHeadStyle(this._ctaParaRevealed, 0),
+      ctaButtonWrapStyle: { ...afterHeadStyle(this._ctaButtonRevealed, 0), display: 'inline-flex' },
+      ctaImages,
+      onCtaEnter: () => { this._hoverCta = true; this.forceUpdate(); },
+      onCtaLeave: () => { if (!(this.isMobileNow() && this._ctaMobilePlayed)) { this._hoverCta = false; this.forceUpdate(); } },
+      ctaArrowStyle: arrowStyle(this._hoverCta, 22),
+      ctaChevronStyle: chevronStyle(this._hoverCta),
+      ctaTextStyle: {
+        background: '#FF5C29', color: '#fff', borderRadius: '8px 8px 8px 0px', fontSize: '14px', fontWeight: 500, letterSpacing: '0.03em',
+        overflow: 'hidden', whiteSpace: 'nowrap', boxSizing: 'border-box',
+        maxWidth: (!this.isMobileNow() || this._hoverCta) ? '220px' : '0px',
+        padding: (!this.isMobileNow() || this._hoverCta) ? '14px 26px' : '14px 0px',
+        opacity: (!this.isMobileNow() || this._hoverCta) ? 1 : 0,
+        transition: 'background .2s ease, max-width .6s cubic-bezier(0.16,1,0.3,1), padding .6s cubic-bezier(0.16,1,0.3,1), opacity .4s ease',
+      },
+      onFooterCtaEnter: () => { this._hoverFooterCta = true; this.forceUpdate(); },
+      onFooterCtaLeave: () => { if (!(this.isMobileNow() && this._footerCtaMobilePlayed)) { this._hoverFooterCta = false; this.forceUpdate(); } },
+      footerCtaArrowStyle: arrowStyle(this._hoverFooterCta, 20),
+      footerCtaChevronStyle: chevronStyle(this._hoverFooterCta),
+      footerCtaTextStyle: {
+        background: '#FF5C29', color: '#fff', borderRadius: '8px 8px 8px 0px', fontSize: '14px', fontWeight: 500, letterSpacing: '0.03em',
+        overflow: 'hidden', whiteSpace: 'nowrap', boxSizing: 'border-box',
+        maxWidth: (!this.isMobileNow() || this._hoverFooterCta) ? '220px' : '0px',
+        padding: (!this.isMobileNow() || this._hoverFooterCta) ? '12px 22px' : '12px 0px',
+        opacity: (!this.isMobileNow() || this._hoverFooterCta) ? 1 : 0,
+        transition: 'background .2s ease, max-width .6s cubic-bezier(0.16,1,0.3,1), padding .6s cubic-bezier(0.16,1,0.3,1), opacity .4s ease',
+      },
+      whoItems,
+      faqHeadingRef: this.faqHeadingRef,
+      faqHeadingStyle: {
+        fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 500, fontSize: 'clamp(36px, 4.5vw, 58px)', lineHeight: 0.95, margin: 0,
+        opacity: this._faqHeadingVisible ? 1 : 0,
+        transform: this._faqHeadingVisible ? 'translateX(0)' : 'translateX(-60px)',
+        transition: 'opacity .7s cubic-bezier(0.16,1,0.3,1), transform .7s cubic-bezier(0.16,1,0.3,1)',
+      },
+      faqItems,
+      moreFrameRef: this.moreFrameRef,
+      moreImgWrapRef: this.moreImgWrapRef,
+      statItems,
+      seasonItems,
+      navStyle,
+      loaderStyle,
+      secondSectionStyle,
+      howImageVisStyle,
+      onImagesEnter: () => { this._imgHover = true; this.forceUpdate(); },
+      onImagesLeave: () => { this._imgHover = false; this.forceUpdate(); },
+      steps,
+      heroHeading: this.renderWordsHeading(['MAKE SOMETHING', 'WITH YOUR HANDS'], 0.1, this._heroToken),
+      stepsHeading: this.renderWordsHeading(['THREE STEPS TO', 'YOUR NEXT MASTERPIECE'], 0, this._stepsToken),
+      stepsHeadingRef: this.stepsHeadingRef,
+      stepsCardRef: this.stepsCardRef,
+      secondSectionRef: this.secondSectionRef,
+      frameRef: this.frameRef,
+      imgWrapRef: this.imgWrapRef,
+      heroTextRef: this.heroTextRef,
+      cursorRef: this.cursorRef,
+      howFrameRef: this.howFrameRef,
+      howImgWrapRef: this.howImgWrapRef,
+      onNavEnter: () => { this._hoverNav = true; this.forceUpdate(); },
+      onNavLeave: () => { this._hoverNav = false; this.forceUpdate(); },
+      onHeroEnter: () => { this._hoverHero = true; this.forceUpdate(); },
+      onHeroLeave: () => { if (!(this.isMobileNow() && this._heroMobilePlayed)) { this._hoverHero = false; this.forceUpdate(); } },
+      navArrowStyle: arrowStyle(this._hoverNav, 20),
+      navChevronStyle: chevronStyle(this._hoverNav),
+      heroArrowStyle: arrowStyle(this._hoverHero, 22),
+      heroChevronStyle: chevronStyle(this._hoverHero),
+      heroTextStyle: {
+        background: '#FF5C29', color: '#fff', borderRadius: '8px 8px 8px 0px', fontSize: '14px', fontWeight: 500, letterSpacing: '0.03em',
+        overflow: 'hidden', whiteSpace: 'nowrap', boxSizing: 'border-box',
+        maxWidth: (!this.isMobileNow() || this._hoverHero) ? '220px' : '0px',
+        padding: (!this.isMobileNow() || this._hoverHero) ? '14px 26px' : '14px 0px',
+        opacity: (!this.isMobileNow() || this._hoverHero) ? 1 : 0,
+        transition: 'background .2s ease, max-width .6s cubic-bezier(0.16,1,0.3,1), padding .6s cubic-bezier(0.16,1,0.3,1), opacity .4s ease',
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>
